@@ -1,4 +1,9 @@
+This is a Rummy Tournament Management application created to keep records, teams, and players data.
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+
+## What I use:
+
+#NextJs | #MongoDB | #tailwindcss 3.3.5
 
 ## Getting Started
 
