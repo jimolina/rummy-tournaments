@@ -20,7 +20,7 @@ const Home = () => {
         </span>
       </h1>
       <p className="desc text-center">
-        This is a Rummy Tournament Management aplication created to keep records, teams,
+        This is a Rummy Tournament Management application created to keep records, teams,
         and players data.
       </p>
 
