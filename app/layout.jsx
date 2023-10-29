@@ -1,0 +1,49 @@
+import '@styles/globals.css';
+
+import { config } from '@fortawesome/fontawesome-svg-core'
+import '@fortawesome/fontawesome-svg-core/styles.css'
+config.autoAddCss = false
+
+import Nav from '@components/Nav';
+import Provider from '@components/Provider';
+
+export const metadata = {
+    title: "BacardiClub",
+    description: "Rummy Tourmanent Management",
+}
+
+const RootLayout = ({ children }) => {
+  return (
+    <html lang='en'>
+        <body>
+            <Provider>
+                <div className='main'>
+                    <div className='gradient' />
+                </div>
+
+                <header>
+                    <Nav />
+                </header>
+                
+                <main className='app'>
+                    { children }
+                </main>
+
+                <footer className="mt-8 text-center text-xs text-white bg-black p-3">
+                    Developed by {` `}
+                    <a
+                        href="http://josemolinaresume.com/"
+                        target="_Blank"
+                        className="text-yellow-700 underline"
+                    >
+                        Jose Molina
+                    </a>
+                    {` `}© 2023 Copyright.
+                </footer>
+            </Provider>
+        </body>
+    </html>
+  )
+}
+
+export default RootLayout;

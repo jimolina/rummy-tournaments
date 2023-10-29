@@ -1,0 +1,524 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* 
+  Note: The styles for this gradient grid background is heavily inspired by the creator of this amazing site (https://dub.sh) – all credits go to them! 
+*/
+
+.main {
+  width: 100vw;
+  min-height: 100vh;
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  padding: 120px 24px 160px 24px;
+  pointer-events: none;
+  z-index: -1;
+}
+
+.main:before {
+  background: radial-gradient(circle, rgba(2, 0, 36, 0) 0, #fafafa 100%);
+  position: absolute;
+  content: "";
+  z-index: 2;
+  width: 100%;
+  height: 100%;
+  top: 0;
+}
+
+.main:after {
+  content: "";
+  background-image: url("/assets/images/grid.svg");
+  z-index: 1;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  opacity: 0.4;
+  filter: invert(1);
+}
+
+.gradient {
+  height: fit-content;
+  z-index: 3;
+  width: 100%;
+  max-width: 640px;
+  background-image: radial-gradient(
+      at 27% 37%,
+      hsla(215, 98%, 61%, 1) 0px,
+      transparent 0%
+    ),
+    radial-gradient(at 97% 21%, hsla(125, 98%, 72%, 1) 0px, transparent 50%),
+    radial-gradient(at 52% 99%, hsla(354, 98%, 61%, 1) 0px, transparent 50%),
+    radial-gradient(at 10% 29%, hsla(256, 96%, 67%, 1) 0px, transparent 50%),
+    radial-gradient(at 97% 96%, hsla(38, 60%, 74%, 1) 0px, transparent 50%),
+    radial-gradient(at 33% 50%, hsla(222, 67%, 73%, 1) 0px, transparent 50%),
+    radial-gradient(at 79% 53%, hsla(343, 68%, 79%, 1) 0px, transparent 50%);
+  position: absolute;
+  content: "";
+  width: 100%;
+  height: 100%;
+  filter: blur(100px) saturate(150%);
+  top: 80px;
+  opacity: 0.15;
+}
+
+@media screen and (max-width: 640px) {
+  .main {
+    padding: 0;
+  }
+}
+
+/* Tailwind Styles */
+
+.app, header {
+  @apply relative
+  z-10
+  flex
+  justify-center
+  items-center
+  flex-col
+  max-w-7xl
+  mx-auto
+  sm:px-16 
+  px-4;
+}
+
+header {
+  @apply z-20;
+}
+
+.btn {
+  @apply rounded-full
+  border
+  border-black
+  bg-black
+  py-1.5 px-5
+  text-white
+  transition-all
+  hover:bg-white
+  hover:text-black
+  text-center
+  text-sm
+  font-inter
+  flex
+  items-center
+  justify-center;
+}
+
+.btn-icon {
+  @apply flex justify-center items-center gap-1 py-0.5 px-4;
+}
+
+.btn-icon .icon {
+  @apply text-lg;
+}
+
+.black_btn {
+  @apply rounded-full border border-black bg-black py-1.5 px-5 text-white transition-all hover:bg-white hover:text-black text-center text-sm font-inter flex items-center justify-center;
+}
+
+.outline_btn {
+  @apply rounded-full border border-black bg-transparent py-1.5 px-5 text-black transition-all hover:bg-black hover:text-white text-center text-sm font-inter flex items-center justify-center;
+}
+
+.orange_btn {
+  @apply px-2
+  py-0
+  cursor-pointer
+  border-primary-orange
+  bg-primary-orange
+  rounded-md
+  text-white
+  hover:bg-orange-800
+  hover:text-white;
+}
+
+.orange_btn:disabled {
+  @apply opacity-50
+  cursor-not-allowed
+  hover:bg-primary-orange
+  hover:text-white;
+}
+
+.head_text {
+  @apply mt-5
+  text-3xl
+  font-extrabold
+  leading-[1.15]
+  text-black
+  sm:text-5xl;
+}
+
+.orange_gradient {
+  @apply bg-gradient-to-r from-amber-500 via-orange-600 to-yellow-500 bg-clip-text text-transparent;
+}
+
+.green_gradient {
+  @apply bg-gradient-to-r from-green-400 to-green-500 bg-clip-text text-transparent;
+}
+
+.blue_gradient {
+  @apply bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent;
+}
+
+.desc {
+  @apply mt-5 text-lg text-gray-600 sm:text-xl max-w-2xl;
+}
+
+.search_input {
+  @apply block w-full rounded-md border border-gray-200 bg-white py-2.5 font-satoshi pl-5 pr-12 text-sm shadow-lg font-medium focus:border-black focus:outline-none focus:ring-0;
+}
+
+.copy_btn {
+  @apply w-7 h-7 rounded-full bg-white/10 shadow-[inset_10px_-50px_94px_0_rgb(199,199,199,0.2)] backdrop-blur flex justify-center items-center cursor-pointer;
+}
+
+.glassmorphism {
+  @apply rounded-xl border border-gray-200 bg-white/20 shadow-[inset_10px_-50px_94px_0_rgb(199,199,199,0.2)] backdrop-blur p-5;
+}
+
+.prompt_layout {
+  @apply space-y-6 py-8 sm:columns-2 sm:gap-6 xl:columns-3;
+}
+
+input[type=number].appearance-none::-webkit-inner-spin-button,
+input[type=number].appearance-none::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type=number].appearance-none {
+  -moz-appearance:textfield;
+}
+
+/* Feed Component */
+.feed {
+  @apply mt-16 mx-auto w-full max-w-xl flex justify-center items-center flex-col gap-2;
+}
+
+/* Form Component */
+.form_default {
+  @apply md:mt-10 mt-6
+  w-full
+  flex
+  flex-col
+  gap-7;
+}
+
+.form_textarea {
+  @apply w-full flex rounded-lg h-[200px] mt-2 p-3 text-sm text-gray-500 outline-0;
+}
+
+.form_input {
+  @apply w-full
+  flex
+  rounded-lg
+  border-solid
+  border-2
+  border-slate-400
+  border-opacity-50
+  mt-2 p-3
+  text-sm
+  text-gray-500;
+}
+
+/* Nav Component */
+.logo_text {
+  @apply font-satoshi font-semibold text-lg text-black tracking-wide;
+}
+
+.dropdown {
+  @apply absolute
+  right-0
+  top-full
+  mt-3
+  w-full
+  p-5
+  rounded-lg
+  bg-white
+  flex
+  flex-col
+  gap-2
+  justify-end
+  drop-shadow-xl;
+}
+
+.dropdown_link {
+  @apply text-sm
+  font-inter
+  text-center
+  text-gray-700
+  hover:text-gray-500
+  font-medium
+  w-full;
+}
+
+/* Cards Component */
+.card_default {
+  @apply rounded-lg border border-gray-300 bg-white/20 bg-clip-padding backdrop-blur-lg backdrop-filter drop-shadow-sm w-full;
+}
+
+.card_default__title {
+  @apply px-4 py-2 border-b-4 bg-slate-200 gap-2 flex items-center;
+}
+
+.card_default__title .title {
+  @apply font-mono tracking-wide;
+}
+
+.card_default__desc {
+  @apply p-4;
+}
+
+.card_list li {
+  @apply flex flex-col justify-between items-start pl-2 rounded-l border-orange-500 border-l-8 mb-4;
+}
+
+.card_list li:last-child {
+  @apply mb-0;
+}
+
+.card_list.with-avatar li {
+  @apply pl-12 relative;
+}
+
+.card_list.with-avatar .avatar {
+  @apply absolute left-2 top-1;
+}
+
+/* Table Component */
+.see-all-columns {
+  @apply text-xs
+  font-mono
+  block
+  md:hidden;
+}
+
+.see-all-columns:disabled {
+  @apply opacity-50
+  cursor-not-allowed;
+}
+
+.table_container {
+  @apply flex
+  items-center
+  justify-start
+  w-full;
+  overflow-x: auto;
+}
+
+.table_responsive {
+  @apply table-fixed
+  bg-white
+  min-w-[500px]
+  w-full
+  border
+  border-separate
+  border-slate-300
+  border-spacing-0
+  text-sm
+  flex
+  flex-row
+  justify-start
+  items-stretch
+  md:inline-table;
+}
+
+.table_responsive tbody {
+  @apply flex
+  md:contents;
+}
+
+.table_responsive:not(.see-all) tbody tr:not(.sub-totals):not(.totals) {
+  @apply hidden
+  md:table-row;
+}
+
+.table_responsive tr {
+  @apply flex
+  flex-col
+  justify-stretch
+  md:table-row;
+}
+
+.table_responsive th,
+.table_responsive td {
+  @apply border
+  border-slate-300
+  text-center
+  flex
+  md:table-cell
+  justify-center
+  items-center
+  w-[100px]
+  min-h-[90px]
+  md:min-h-min;
+}
+
+.table_responsive th {
+  @apply p-3
+}
+
+.table_responsive td {
+  @apply p-1;
+}
+
+.table_responsive .sub-totals {
+  @apply font-semibold bg-gray-300;
+}
+
+.table_responsive .sub-totals td {
+  @apply border-white;
+}
+
+.table_responsive .sub-totals .fa-wine-glass,
+.table_responsive .sub-totals .fa-heart-crack {
+  @apply hidden;
+}
+
+.table_responsive .sub-totals .winner .fa-wine-glass,
+.table_responsive .sub-totals .loser .fa-heart-crack {
+  @apply inline-block;
+}
+
+.table_responsive .sub-totals .winner {
+  @apply font-bold text-white bg-green-600;
+}
+
+.table_responsive .sub-totals .loser {
+  @apply font-bold text-white bg-red-600;
+}
+
+.table_responsive .totals {
+  @apply hidden;
+}
+
+.table_responsive .totals.final {
+  @apply table-row
+  bg-sky-900
+  text-white
+  font-extrabold
+  text-lg;
+}
+
+.table_responsive .totals td {
+  @apply w-[170px]
+  md:w-[100px];
+}
+
+.table_responsive .totals .fa-trophy,
+.table_responsive .totals .fa-truck-medical {
+  @apply hidden;
+}
+
+.table_responsive .totals .winner .fa-trophy,
+.table_responsive .totals .loser .fa-truck-medical {
+  @apply inline-block;
+}
+
+.table_responsive .totals .winner {
+  @apply bg-green-600;
+}
+
+.table_responsive .totals .loser {
+  @apply bg-red-600
+  animate-pulse;
+}
+
+
+/* .table_responsive thead,
+.table_responsive tbody {
+  @apply flex
+  flex-row
+  md:table-cell;
+} */
+
+.table_responsive th img {
+  display: inline-block;
+}
+
+/* Areas Group */
+.player-card .card_default__desc .title {
+  @apply hidden
+  md:inline-block;
+}
+
+.player-card .card_list li {
+  @apply flex-row
+  justify-start
+  bg-slate-100;
+}
+
+.player-card .card_list.with-avatar li {
+  @apply flex-row
+  justify-start
+  items-center
+  gap-2
+  py-3
+  px-2
+  text-gray-900;
+}
+
+.player-card .card_list .count {
+  @apply ml-auto;
+}
+
+.player-card .card_list .count .fa-trophy,
+.player-card .card_list .count .fa-truck-medical {
+  @apply hidden;
+}
+
+.player-card .card_list li.winner,
+.player-card .card_list li.loser {
+  @apply text-white;
+}
+
+
+.player-card .card_list .winner .count,
+.player-card .card_list .loser .count {
+  @apply text-2xl
+  font-extrabold;
+}
+
+.player-card .card_list .winner {
+  @apply bg-green-600
+  border-green-900;
+}
+
+.player-card .card_list .winner .count .fa-trophy {
+  @apply inline-block;
+}
+
+.player-card .card_list .loser {
+  @apply bg-red-600
+  border-red-900;
+}
+
+.player-card .card_list .loser .count .fa-truck-medical {
+  @apply inline-block;
+}
+
+/* PromptCard Component */
+.prompt_card {
+  @apply flex-1 break-inside-avoid rounded-lg border border-gray-300 bg-white/20 bg-clip-padding p-6 pb-4 backdrop-blur-lg backdrop-filter md:w-[360px] w-full h-fit;
+}
+
+.flex-center {
+  @apply flex justify-center items-center;
+}
+
+.flex-start {
+  @apply flex justify-start items-start;
+}
+
+.flex-end {
+  @apply flex justify-end items-center;
+}
+
+.flex-between {
+  @apply flex justify-between items-center;
+}
