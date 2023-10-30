@@ -78,7 +78,7 @@
   @apply relative
   z-10
   flex
-  justify-center
+  justify-start
   items-center
   flex-col
   max-w-7xl
@@ -92,7 +92,7 @@ header {
 }
 
 .btn {
-  @apply rounded-full
+  @apply rounded-md
   border
   border-black
   bg-black
@@ -110,11 +110,20 @@ header {
 }
 
 .btn-icon {
-  @apply flex justify-center items-center gap-1 py-0.5 px-4;
+  @apply flex
+  justify-center
+  items-center
+  gap-1
+  py-0.5
+  px-4;
 }
 
 .btn-icon .icon {
   @apply text-lg;
+}
+
+.btn-icon .copy {
+  @apply max-md:hidden;
 }
 
 .black_btn {
@@ -314,7 +323,7 @@ input[type=number].appearance-none {
 .table_responsive {
   @apply table-fixed
   bg-white
-  min-w-[500px]
+  /* min-w-[500px] */
   w-full
   border
   border-separate
@@ -429,14 +438,6 @@ input[type=number].appearance-none {
   animate-pulse;
 }
 
-
-/* .table_responsive thead,
-.table_responsive tbody {
-  @apply flex
-  flex-row
-  md:table-cell;
-} */
-
 .table_responsive th img {
   display: inline-block;
 }
@@ -444,31 +445,57 @@ input[type=number].appearance-none {
 /* Areas Group */
 .player-card .card_default__desc .title {
   @apply hidden
-  md:inline-block;
+  md:flex;
 }
 
 .player-card .card_list li {
   @apply flex-row
   justify-start
-  bg-slate-100;
+  bg-slate-100
+  min-h-[52px]
+  md:min-h-[60px];
 }
 
 .player-card .card_list.with-avatar li {
   @apply flex-row
-  justify-start
-  items-center
+  items-stretch
   gap-2
-  py-3
-  px-2
-  text-gray-900;
+  pl-0
+  pr-3
+  text-gray-900
+  shadow-md
+  rounded-r
+  mb-6;
+}
+
+.player-card .card_list.with-avatar .avatar {
+  @apply absolute
+  left-0
+  top-[-9px]
+  max-w-[70px]
+  md:max-w-[fit-content];
+}
+
+.player-card .card_list .title {
+  @apply pl-[80px];
+}
+
+.player-card .card_list .icon {
+  @apply bg-orange-400
+  text-white
+  min-w-[60px]
+  flex
+  items-center
+  justify-center;
 }
 
 .player-card .card_list .count {
-  @apply ml-auto;
+  @apply ml-auto
+  font-semibold;
 }
 
-.player-card .card_list .count .fa-trophy,
-.player-card .card_list .count .fa-truck-medical {
+.player-card .card_list .icon .fa-trophy,
+.player-card .card_list .icon .fa-truck-medical {
   @apply hidden;
 }
 
@@ -477,19 +504,31 @@ input[type=number].appearance-none {
   @apply text-white;
 }
 
-
-.player-card .card_list .winner .count,
-.player-card .card_list .loser .count {
-  @apply text-2xl
-  font-extrabold;
+.player-card .card_list li.winner .title,
+.player-card .card_list li.loser .title {
+  @apply pl-[80px];
 }
+
+/* .player-card .card_list li.winner .count,
+.player-card .card_list li.loser .count {
+  @apply text-lg;
+} */
 
 .player-card .card_list .winner {
   @apply bg-green-600
   border-green-900;
 }
 
-.player-card .card_list .winner .count .fa-trophy {
+.player-card .card_list li.winner .icon .loop,
+.player-card .card_list li.loser .icon .loop {
+  @apply hidden;
+}
+
+.player-card .card_list li.winner .icon {
+  @apply bg-green-800;
+}
+
+.player-card .card_list .winner .icon .fa-trophy {
   @apply inline-block;
 }
 
@@ -498,8 +537,17 @@ input[type=number].appearance-none {
   border-red-900;
 }
 
-.player-card .card_list .loser .count .fa-truck-medical {
+.player-card .card_list li.loser .icon {
+  @apply bg-red-800;
+}
+
+.player-card .card_list .loser .icon .fa-truck-medical {
   @apply inline-block;
+}
+
+.game-card .card_list li {
+  @apply border-0
+  pl-0;
 }
 
 /* PromptCard Component */
