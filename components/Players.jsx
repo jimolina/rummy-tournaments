@@ -27,12 +27,13 @@ const PlayerCardList = ({ data, handleTagClick}) =>  {
 
   return (
     <ul role="list" className="card_list with-avatar">
-      { data.map( ( post ) => (
+      { data.map( ( post, item ) => (
         <PlayerCard
           key={`player_${post._id}`}
           post={post}
           winner={minValue}
           loser={maxValue}
+          loop={(item + 1)}
           handleTagClick={handleTagClick}
         />
       ))}

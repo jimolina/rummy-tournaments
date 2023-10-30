@@ -1,14 +1,15 @@
 "use client";
 
+import { useState, Fragment, useEffect } from "react";
+import { signIn, signOut, useSession, getProviders } from "next-auth/react";
+
 import Link from "next/link";
 import Image from "next/image";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
-  faDiceD20
+  faDiceD20,
+  faBars
 } from '@fortawesome/free-solid-svg-icons';
-
-import { useState, useEffect } from "react";
-import { signIn, signOut, useSession, getProviders } from "next-auth/react";
 
 const Nav = () => {
     const { data: session } = useSession();
@@ -130,14 +131,35 @@ const Nav = () => {
                     <>
                         {providers &&
                             Object.values( providers ).map( ( provider ) => (
-                                <button
-                                    type="button"
-                                    key={ provider.name }
-                                    onClick={ () => signIn( provider.id ) }
-                                    className="black_btn"
-                                >
-                                    Sign In
-                                </button>
+                                <Fragment key={ provider.name }>
+                                    <FontAwesomeIcon
+                                        icon={faBars}
+                                        className="fa-lg text-orange-600"
+                                        onClick={ () => setToggleDropdown( (prev) => !prev ) }
+                                    />
+                                    {toggleDropdown && (
+                                        <div className="dropdown">
+                                            <button
+                                                type="button"
+                                                onClick={ () => {
+                                                    setToggleDropdown( false );
+                                                    signIn( provider.id );
+                                                }}
+                                                className="w-full black_btn"
+                                            >
+                                                Sign In
+                                            </button>
+                                        </div>
+                                    )}
+                                    {/* <button
+                                        type="button"
+                                        key={ provider.name }
+                                        onClick={ () => signIn( provider.id ) }
+                                        className="black_btn"
+                                    >
+                                        Sign In
+                                    </button> */}
+                                </Fragment>
                             ))
                         }
                     </>

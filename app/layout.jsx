@@ -21,11 +21,11 @@ const RootLayout = ({ children }) => {
                     <div className='gradient' />
                 </div>
 
-                <header>
+                <header className='w-full'>
                     <Nav />
                 </header>
                 
-                <main className='app'>
+                <main className='app flex-1'>
                     { children }
                 </main>
 

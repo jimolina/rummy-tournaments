@@ -170,8 +170,16 @@ const ScoreCard = ({ post, groupDate, handleTagClick }) => {
       {post.tournament ? (
         <li>
           <div className="flex justify-between w-full mb-3">
-            <div>
+            {/* Mobile Header */}
+            <div className="md:hidden flex flex-col w-full gap-2">
               <h5>{ date }</h5>
+              <button
+                type="button"
+                onClick={ () => setGetWinner( true ) }
+                disabled={ 3 > scoresByGame.score.length ?? true }
+                className='btn orange_btn'>
+                  Find Winner!
+              </button>
               <button
                 type="button"
                 onClick={ () => setSeeColumns( seeColumns => ! seeColumns ) }
@@ -185,13 +193,31 @@ const ScoreCard = ({ post, groupDate, handleTagClick }) => {
                   {seeActionColumns} game columns
               </button>
             </div>
-            <button
-              type="button"
-              onClick={ () => setGetWinner( true ) }
-              disabled={ 3 > scoresByGame.score.length ?? true }
-              className='btn orange_btn'>
-                Find Winner!
-            </button>
+            {/* Desktop Header */}
+            <div className="max-md:hidden w-full flex justify-between">
+              <div>
+                <h5>{ date }</h5>
+                <button
+                  type="button"
+                  onClick={ () => setSeeColumns( seeColumns => ! seeColumns ) }
+                  disabled={ 3 > scoresByGame.score.length ?? true }
+                  className='see-all-columns'>
+                    { 'faEye' === seeIconColumns
+                      ? <FontAwesomeIcon icon={faEye} className="fa-sm pr-1" />
+                      : <FontAwesomeIcon icon={faEyeSlash} className="fa-sm pr-1" />
+                    }
+                    
+                    {seeActionColumns} game columns
+                </button>
+              </div>
+              <button
+                type="button"
+                onClick={ () => setGetWinner( true ) }
+                disabled={ 3 > scoresByGame.score.length ?? true }
+                className='btn orange_btn'>
+                  Find Winner!
+              </button>
+            </div>            
           </div>
           {/* <h3 className="font-satoshi font-semibold text-gray-900">
             {post.tournament}
