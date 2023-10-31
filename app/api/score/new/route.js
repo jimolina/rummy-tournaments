@@ -6,6 +6,7 @@ export const POST = async ( req ) => {
     
     try {
         await connectToDB();
+
         const newScores = new Score({
             creator: userId,
             tournament,
@@ -13,6 +14,7 @@ export const POST = async ( req ) => {
         });
 
         newScores.scores = scores;
+        
         await newScores.save();
 
         return new Response( JSON.stringify( newScores ), { status: 201 } );
