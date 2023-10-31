@@ -17,8 +17,6 @@ const PlayerCardList = ({ data, handleTagClick}) =>  {
   // We take the total count values to determine the Max/Min
   // (Winner/Losser)
   if ( 0 < scoreCountValues.length ) {
-    console.log(scoreCountValues);
-
     //Player with highest count is the Loser
     maxValue = parseInt( Math.max.apply(null, scoreCountValues) );
     //Player with lowers count is the Winner

@@ -6,12 +6,7 @@ export const POST = async ( req ) => {
 
     try {
         await connectToDB();
-        console.log({
-            'userId: ': userId,
-            'name: ': name,
-            'email: ': email,
-            'avatar: ': avatar,
-        })
+
         const newPlayer = new Player({
             creator: userId,
             name,
