@@ -20,6 +20,7 @@ const ScoreCard = ({ post, groupDate, handleTagClick }) => {
   const [ seeActionColumns, setSeeActionColumns ] = useState( 'see' );
   const [ seeIconColumns, setSeeIconColumns ] = useState( 'faEye' );
 
+  const validTotalDisplayPosition = [ 3, 7, 11, 15 ];
   const date = post.date ? new Date(post.date).toDateString() : '';
   const scoresByGame = {
     score: [],
@@ -38,10 +39,35 @@ const ScoreCard = ({ post, groupDate, handleTagClick }) => {
   const calculateGameTotals = ( tableId, column, row ) => {
     const table = document.getElementById( tableId );
     let sumVal = 0;
+    let rowToStart;
+    let rowToStop;
 
+    // Set the vales where to star and stop counting for each game.
+    // Max. of 4 games per day.
     if ( table ) {
-      const rowToStart = 3 <= row ? 1 : row - 2;
-      for ( let i = rowToStart; i < 5; i++ ) {
+      switch( row ) {
+        case 0:
+        case 1:
+        case 2:
+        case 3:
+          rowToStart = row;
+          rowToStop = 4;
+          break;
+        case 7:
+          rowToStart = 6;
+          rowToStop = 10;
+          break;
+        case 11:
+          rowToStart = 11;
+          rowToStop = 15;
+          break;
+        case 15:
+          rowToStart = 16;
+          rowToStop = 20;
+          break;
+      }
+
+      for ( let i = rowToStart; i < rowToStop; i++ ) {
         if ( table.rows[ i ].cells[ column ] ) {
           sumVal = sumVal + parseInt( table.rows[ i ].cells[ column ].innerHTML );
         }
@@ -156,7 +182,9 @@ const ScoreCard = ({ post, groupDate, handleTagClick }) => {
           }
         }
 
-        table.querySelector("tr.totals").className += " final";
+        if ( table.querySelector("tr.totals") ) {
+          table.querySelector("tr.totals").className += " final";
+        }
       }
     }
   
@@ -176,14 +204,14 @@ const ScoreCard = ({ post, groupDate, handleTagClick }) => {
               <button
                 type="button"
                 onClick={ () => setGetWinner( true ) }
-                disabled={ 3 > scoresByGame.score.length ?? true }
+                disabled={ 4 > scoresByGame.score.length ?? true }
                 className='btn orange_btn'>
                   Find Winner!
               </button>
               <button
                 type="button"
                 onClick={ () => setSeeColumns( seeColumns => ! seeColumns ) }
-                disabled={ 3 > scoresByGame.score.length ?? true }
+                disabled={ 4 > scoresByGame.score.length ?? true }
                 className='see-all-columns'>
                   { 'faEye' === seeIconColumns
                     ? <FontAwesomeIcon icon={faEye} className="fa-sm pr-1" />
@@ -200,7 +228,7 @@ const ScoreCard = ({ post, groupDate, handleTagClick }) => {
                 <button
                   type="button"
                   onClick={ () => setSeeColumns( seeColumns => ! seeColumns ) }
-                  disabled={ 3 > scoresByGame.score.length ?? true }
+                  disabled={ 4 > scoresByGame.score.length ?? true }
                   className='see-all-columns'>
                     { 'faEye' === seeIconColumns
                       ? <FontAwesomeIcon icon={faEye} className="fa-sm pr-1" />
@@ -213,7 +241,7 @@ const ScoreCard = ({ post, groupDate, handleTagClick }) => {
               <button
                 type="button"
                 onClick={ () => setGetWinner( true ) }
-                disabled={ 3 > scoresByGame.score.length ?? true }
+                disabled={ 4 > scoresByGame.score.length ?? true }
                 className='btn orange_btn'>
                   Find Winner!
               </button>
@@ -281,7 +309,7 @@ const ScoreCard = ({ post, groupDate, handleTagClick }) => {
                           </tr>
                         ): ( null )
                       }
-                      {( scoresByGame.score.length - 1 ) === index ?
+                      {validTotalDisplayPosition.includes(index) && ( scoresByGame.score.length - 1 ) === index ?
                         (
                           <tr key={`scores_totals_${index}`} className="totals hidden">
                             {scoresByGame.score[0].map( ( column, loopTotal ) =>
