@@ -1,8 +1,8 @@
 "use client";
 
-import { useState } from "react";
-import { useSession } from "next-auth/react";
-import { usePathname, useRouter } from "next/navigation";
+// import { useState } from "react";
+// import { useSession } from "next-auth/react";
+// import { usePathname, useRouter } from "next/navigation";
 
 import Image from "next/image";
 import Md5 from "@utils/md5.min.js";
@@ -42,7 +42,7 @@ const PlayerCard = ({ post, winner, loser, loop, handleTagClick }) => {
           </h3>
           <div className="count flex items-stretch">
               <span className="flex items-center">
-                {post.count}
+                {post.count ?? '0'}
               </span>
           </div>
         </li>
