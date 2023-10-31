@@ -6,11 +6,7 @@ export const POST = async ( req ) => {
 
     try {
         await connectToDB();
-        console.log({
-            'userId: ': userId,
-            'name: ': name,
-            'start_date: ': start_date
-        })
+
         const newTournament = new Tournament({
             creator: userId,
             name,
