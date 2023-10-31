@@ -1,5 +1,5 @@
 import { connectToDB } from "@utils/database";
-import Player from "@models/player";
+
 import Scores from "@models/score";
 
 export const GET = async ( req ) => {

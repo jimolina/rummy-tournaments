@@ -16,7 +16,7 @@ const CreateScore = () => {
 
     useEffect(() => {
       const fetchPlayers = async () => {
-        const response = await fetch( '/api/player' );
+        const response = await fetch( '/api/player/list' );
         const data = await response.json();
     
         setPlayers( data );

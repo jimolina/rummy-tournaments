@@ -41,12 +41,21 @@ const PlayerCardList = ({ data, handleTagClick}) =>  {
 
 const Feed = () => {
   const [ posts, setPosts ] = useState([]);
+  let data = [];
 
   useEffect(() => {
     const fetchPosts = async () => {
-      const response = await fetch( '/api/player' );
-      const data = await response.json();
-  
+      // We get full data from the .Aggregate
+      const responseAggregate = await fetch( '/api/player' );
+      data = await responseAggregate.json();
+
+      // If the .Aggregate return zero data, then we
+      // call the simple Player object.
+      if ( 0 === data.length ) {
+        const responseSimple = await fetch( '/api/player/list' );
+        data = await responseSimple.json();
+      }
+
       setPosts( data );
     }
   
