@@ -1,6 +1,8 @@
 import Link from 'next/link';
-import {getAvatar} from "@utils/getAvatar.js";
 import Image from "next/image";
+
+import {getAvatar} from "@utils/getAvatar.js";
+import { ValidateSession } from './ValidateSession';
 
 const ScoreForm = ({
   type,
@@ -12,7 +14,8 @@ const ScoreForm = ({
   submitting,
   handleSubmit,
 }) => {
-
+  ValidateSession();
+  
   return (
     <section className='w-full max-w-full flex-start flex-col'>
       <h1 className='head_text text-left'>
