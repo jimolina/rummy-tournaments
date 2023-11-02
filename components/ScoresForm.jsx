@@ -3,6 +3,8 @@ import Image from "next/image";
 
 import {getAvatar} from "@utils/getAvatar.js";
 import { ValidateSession } from './ValidateSession';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faUsersLine, faChessBoard } from '@fortawesome/free-solid-svg-icons';
 
 const ScoreForm = ({
   type,
@@ -29,35 +31,44 @@ const ScoreForm = ({
         className="form_default glassmorphism"
       >
         <label>
-          <span className='font-satoshi font-semibold text-base text-gray-700'>
+          <span className='label'>
             Tournament:
           </span>
-          <select
-            value={ post.tournaments }
-            onChange={ ( e ) => setPost( {
-              ...post,
-              tournaments: e.target.value,
-            } ) } 
-            className="form_input"
-            required
-          >
-            <option value="">Select</option>
-            {tournaments
-              ? (
-                tournaments.map( ( tournament, index ) => (
+          {tournaments && 0 < tournaments.length
+            ? (
+            <select
+              value={ post.tournaments }
+              onChange={ ( e ) => setPost( {
+                ...post,
+                tournaments: e.target.value,
+              } ) } 
+              className="form_input"
+              required
+            >
+              <option value="">Select</option>
+                {tournaments.map( ( tournament, index ) => (
                   <option
                     key={`tournament_${index}`}
                     value={ tournament._id }>
                       { tournament.name }
                   </option>
-                ))
-                ): null
-              }
-          </select>
+                ))}
+            </select>
+          ): (
+            <div className="message message__empty-state">
+              <FontAwesomeIcon icon={faChessBoard} className='fa-4x' />
+              <p>You will need to create a <b>Tournament</b> first!</p>
+              <Link href="/create-tournament" className="btn btn-icon">
+                  <span className="icon">+</span>
+                  <span className="copy">Tournament</span>
+              </Link>
+            </div>
+          )
+        }
         </label>
 
         <label>
-          <span className='font-satoshi font-semibold text-base text-gray-700'>
+          <span className='label'>
             Date:
           </span>
 
@@ -75,37 +86,48 @@ const ScoreForm = ({
         </label>
 
         <div className="players_container">
-          <div className='font-satoshi font-semibold text-base text-gray-700'>
+          <div className='label'>
             Players:
           </div>
-          <div className="players_group flex flex-wrap flex-col md:flex-row w-full justify-stretch md:justify-around md:gap-6 gap-3 mt-6">
-            {players
-                ? (
-                  players.map( ( player, index ) => (
-                      <div key={ index } className="relative">
-                          <div className="absolute -left-1 top-1">
-                              <Image
-                                src={ getAvatar( player.email, player.avatar ) }
-                                alt="Avatar"
-                                width={81}
-                                height={81}
-                                className="avatar rounded-full object-contain"
-                              />
-                          </div>
-                          <div>
-                            <input
-                              type="number"
-                              name={`${player._id}`}
-                              className="form_input text-right appearance-none ml-2"
-                              placeholder="69"
-                              maxLength={3}
-                              required                        
-                            />
-                          </div>
-                      </div>
-                    )
-                  )
-                ): null
+          <div className="players_group">
+            {players && 0 < players.length
+              ? (
+                players.map( ( player, index ) => (
+                  <div key={ index } className="relative">
+                    <div className="absolute -left-1 top-1">
+                      <Image
+                        src={ getAvatar( player.email, player.avatar ) }
+                        alt="Avatar"
+                        width={81}
+                        height={81}
+                        className="avatar rounded-full object-contain"
+                      />
+                    </div>
+                    <div>
+                      <input
+                        type="number"
+                        name={`${player._id}`}
+                        className="form_input text-right appearance-none ml-2"
+                        placeholder="69"
+                        maxLength={3}
+                        required                        
+                      />
+                    </div>
+                  </div>
+                ))
+              ): (
+                <div className="message message__empty-state">
+                  <FontAwesomeIcon icon={faUsersLine} className='fa-4x' />
+                  <p>You will need to create some <b>Players</b> first!</p>
+                  <p className="note">
+                    It might be a good idea to add all your players before coming back here.
+                  </p>
+                  <Link href="/create-player" className="btn btn-icon">
+                    <span className="icon">+</span>
+                    <span className="copy">Player</span>
+                  </Link>
+                </div>
+              )
             }
           </div>
         </div>

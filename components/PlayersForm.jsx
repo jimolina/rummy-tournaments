@@ -26,10 +26,10 @@ const PlayerForm = ({
       <form
         onSubmit={ handleSubmit }
         encType="multipart/form-data"
-        className="mt-10 w-full max-w-2x1 flex flex-col gap-7 glassmorphism"
+        className="form_default glassmorphism"
       >
         <label>
-            <span className='font-satoshi font-semibold text-base text-gray-700'>
+            <span className='label'>
                 Name:
             </span>
 
@@ -45,7 +45,7 @@ const PlayerForm = ({
             />
         </label>
         <label>
-            <span className='font-satoshi font-semibold text-base text-gray-700'>
+            <span className='label'>
                 Email:
             </span>
 
