@@ -1,9 +1,5 @@
 import '@styles/globals.css';
 
-import { config } from '@fortawesome/fontawesome-svg-core'
-import '@fortawesome/fontawesome-svg-core/styles.css'
-config.autoAddCss = false
-
 import Nav from '@components/Nav';
 import Provider from '@components/Provider';
 
@@ -38,7 +34,7 @@ const RootLayout = ({ children }) => {
                     >
                         Jose Molina
                     </a>
-                    {` `}© 2023 Copyright.
+                    {` `}© 2023 Copyright. Beta V 0.1.
                 </footer>
             </Provider>
         </body>
