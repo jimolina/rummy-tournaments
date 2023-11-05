@@ -47,6 +47,9 @@ const Feed = () => {
     const fetchPosts = async () => {
       const response = await fetch( '/api/tournament', {
         cache: 'no-store',
+        next: {
+          revalidate: 3
+        }
       });
       const data = await response.json();
   
