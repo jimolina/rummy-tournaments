@@ -60,7 +60,12 @@ const Feed = () => {
         players_email: [],
         players_scores: [],
       };
-      const response = await fetch( '/api/score' );
+      const response = await fetch( '/api/score', {
+        cache: 'no-store',
+        next: {
+          revalidate: 10
+        }
+      });
       const data = await response.json();
 
       if ( data && 0 < data.length ) {
