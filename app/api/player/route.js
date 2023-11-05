@@ -2,6 +2,8 @@ import { connectToDB } from "@utils/database";
 
 import Scores from "@models/score";
 
+export const dynamic = 'force-dynamic';
+
 export const GET = async ( req ) => {
     try {
         await connectToDB();

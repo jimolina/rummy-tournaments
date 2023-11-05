@@ -68,13 +68,23 @@ const Feed = () => {
   useEffect(() => {
     const fetchPosts = async () => {
       // We get full data from the .Aggregate
-      const responseAggregate = await fetch( '/api/player' );
+      const responseAggregate = await fetch( '/api/player', {
+        cache: 'no-store',
+        next: {
+          revalidate: 10
+        }
+      });
       data = await responseAggregate.json();
 
       // If the .Aggregate return zero data, then we
       // call the simple Player object.
       if ( 0 === data.length ) {
-        const responseSimple = await fetch( '/api/player/list' );
+        const responseSimple = await fetch( '/api/player/list', {
+          cache: 'no-store',
+          next: {
+            revalidate: 10
+          }
+        });
         data = await responseSimple.json();
       }
 
