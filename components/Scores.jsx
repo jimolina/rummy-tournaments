@@ -38,7 +38,7 @@ const ScoreCardList = ({ data, handleTagClick }) => {
         <div className="message message__empty-state">
           <FontAwesomeIcon icon={faGamepad} className='fa-4x' />
           <p>Create your first <b>Game</b>!</p>
-          <Link href="/create-game" className="btn btn-icon">
+          <Link href="/create-score" className="btn btn-icon">
               <span className="icon">+</span>
               <span className="copy">Game</span>
           </Link>
