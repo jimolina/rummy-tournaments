@@ -45,7 +45,9 @@ const Feed = () => {
 
   useEffect(() => {
     const fetchPosts = async () => {
-      const response = await fetch( '/api/tournament' );
+      const response = await fetch( '/api/tournament', {
+        cache: 'no-store',
+      });
       const data = await response.json();
   
       setPosts( data );
