@@ -1,5 +1,6 @@
 import { connectToDB } from "@utils/database";
 import Tournament from "@models/tournament";
+import User from "@models/user";
 
 export const dynamic = 'force-dynamic';
 
