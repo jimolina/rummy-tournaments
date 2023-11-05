@@ -16,9 +16,9 @@ const TournamentSchema = new Schema({
         require: [ true, 'Start Date is required!' ],
     },
 
-    players: [{
-        type: String,
-    }]
+    // players: [{
+    //     type: String,
+    // }]
 });
 
 const Tournament = models.Tournament || model( 'Tournament', TournamentSchema );
