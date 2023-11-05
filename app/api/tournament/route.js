@@ -15,7 +15,7 @@ export const GET = async ( req ) => {
         );
     } catch (error) {
         return new Response(
-            "Failed to fetch all tournaments",
+            "Failed to fetch all tournaments: " + error,
             {status: 500}
         );
     }
