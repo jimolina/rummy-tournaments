@@ -1,6 +1,8 @@
 import { connectToDB } from "@utils/database";
 import Tournament from "@models/tournament";
 
+export const dynamic = 'force-dynamic';
+
 export const GET = async ( req ) => {
     try {
         await connectToDB();
