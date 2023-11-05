@@ -1,6 +1,8 @@
 import { connectToDB } from "@utils/database";
 import Scores from "@models/score";
 
+export const dynamic = 'force-dynamic';
+
 export const GET = async ( req ) => {
     try {
         await connectToDB();
@@ -18,7 +20,7 @@ export const GET = async ( req ) => {
         );
     } catch (error) {
         return new Response(
-            "Failed to fetch all scores",
+            "Failed to fetch all scores: " + error,
             {status: 500}
         );
     }
