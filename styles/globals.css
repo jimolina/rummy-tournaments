@@ -342,7 +342,14 @@ input[type=number].appearance-none {
 }
 
 .card_list li {
-  @apply flex flex-col justify-between items-start pl-2 rounded-l border-orange-500 border-l-8 mb-4;
+  @apply flex
+  flex-col
+  justify-between
+  items-start
+  pl-2 rounded-l
+  border-orange-500
+  border-l-8
+  mb-4;
 }
 
 .card_list li:last-child {
@@ -520,7 +527,7 @@ input[type=number].appearance-none {
   justify-start
   bg-slate-100
   min-h-[52px]
-  md:min-h-[60px];
+  md:min-h-[47px];
 }
 
 .player-card .card_list.with-avatar li {
@@ -532,13 +539,14 @@ input[type=number].appearance-none {
   text-gray-900
   shadow-md
   rounded-r
-  mb-6;
+  mb-7;
 }
 
 .player-card .card_list.with-avatar .avatar {
   @apply absolute
   left-0
-  top-[-9px]
+  top-[-8px]
+  md:top-[-16px]
   max-w-[70px]
   md:max-w-[fit-content];
 }
