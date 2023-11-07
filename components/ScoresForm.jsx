@@ -94,7 +94,7 @@ const ScoreForm = ({
               ? (
                 players.map( ( player, index ) => (
                   <div key={ index } className="relative">
-                    <div className="absolute -left-1 top-1">
+                    <div className="absolute -left-1 top-0">
                       <Image
                         src={ getAvatar( player.email, player.avatar ) }
                         alt="Avatar"
