@@ -267,7 +267,8 @@ input[type=number].appearance-none {
   border-2
   border-slate-400
   border-opacity-50
-  mt-1 p-3
+  mt-1
+  p-1
   text-sm
   text-gray-500;
 }
@@ -289,8 +290,14 @@ input[type=number].appearance-none {
   justify-stretch
   md:justify-around
   md:gap-6
-  gap-3
+  gap-4
   mt-6;
+}
+
+.players_group .avatar-container {
+  @apply absolute
+  -left-1
+  top-[-1px];
 }
 
 /* Nav Component */
