@@ -268,7 +268,8 @@ input[type=number].appearance-none {
   border-slate-400
   border-opacity-50
   mt-1
-  p-1
+  p-5
+  md:p-1
   text-sm
   text-gray-500;
 }
