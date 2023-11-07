@@ -298,7 +298,8 @@ input[type=number].appearance-none {
 .players_group .avatar-container {
   @apply absolute
   -left-1
-  top-[-1px];
+  top-0
+  md:top-[-1px];
 }
 
 /* Nav Component */
