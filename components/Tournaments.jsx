@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import Link from "next/link";
+import { useSession } from "next-auth/react";
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import '@fortawesome/fontawesome-svg-core/styles.css';
@@ -13,6 +14,8 @@ import { Loading } from '@utils/loading';
 import TournamentCard from './TournamentsList';
 
 const TournamentCardList = ({ data, handleTagClick}) =>  {
+  const { data: session } = useSession();
+
   return (
     <>
       {data && 0 < data.length ? (
@@ -25,7 +28,7 @@ const TournamentCardList = ({ data, handleTagClick}) =>  {
             />
           ))}
         </ul>
-      ):(
+      ): "admin" === session?.user.profile ? (
         <div className="message message__empty-state">
           <FontAwesomeIcon icon={faChessBoard} className='fa-4x' />
           <p>Create your first <b>Tournament</b>!</p>
@@ -34,6 +37,8 @@ const TournamentCardList = ({ data, handleTagClick}) =>  {
               <span className="copy">Tournament</span>
           </Link>
         </div>
+      ):(
+        <div>No Data</div>
       )}
     </>
   )

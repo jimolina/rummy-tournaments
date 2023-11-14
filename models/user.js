@@ -16,6 +16,10 @@ const UserSchema = new Schema({
     },
     image: {
       type: String,
+    },
+    profile: {
+      type: String,
+      default: 'player'
     }
 });
 

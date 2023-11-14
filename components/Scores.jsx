@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import Link from "next/link";
+import { useSession } from "next-auth/react";
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import '@fortawesome/fontawesome-svg-core/styles.css';
@@ -13,6 +14,8 @@ import { Loading } from '@utils/loading';
 import ScoreCard from './ScoresList';
 
 const ScoreCardList = ({ data, handleTagClick }) => {
+  const { data: session } = useSession();
+
   // const handleAfterMapping = () => {
   //   // Perform your desired state update or action here
   //   // This code will run after the .map function has completed.
@@ -34,7 +37,7 @@ const ScoreCardList = ({ data, handleTagClick }) => {
         )}
         {/* {handleAfterMapping()} */}
       </ul>
-    ):(
+    ): "admin" === session?.user.profile ? (
         <div className="message message__empty-state">
           <FontAwesomeIcon icon={faGamepad} className='fa-4x' />
           <p>Create your first <b>Game</b>!</p>
@@ -43,7 +46,9 @@ const ScoreCardList = ({ data, handleTagClick }) => {
               <span className="copy">Game</span>
           </Link>
         </div>
-      )}
+    ):(
+      <div>No Data</div>
+    )}
     </>
 )};
 
