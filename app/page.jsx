@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { signIn, signOut, useSession, getProviders } from "next-auth/react";
+import { useSession } from "next-auth/react";
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import '@fortawesome/fontawesome-svg-core/styles.css';
@@ -35,10 +35,15 @@ const Home = () => {
             <div className='card_default__title'>
               <FontAwesomeIcon icon={faChessBoard} className='fa-xl' />
               <h3 className='title'>Tournaments</h3>
-              <Link href="/create-tournament" className="btn btn-icon ml-auto">
-                  <span className="icon">+</span>
-                  <span className="copy">New</span>
-              </Link>
+                {"admin" === session?.user.profile ? (
+                  <Link
+                    href="/create-tournament"
+                    className="btn btn-icon ml-auto"
+                  >
+                      <span className="icon">+</span>
+                      <span className="copy">New</span>
+                  </Link>
+                ): ( null )}
             </div>
             <div className='card_default__desc'>
               <Tournaments />
@@ -48,11 +53,16 @@ const Home = () => {
           <div className='game-card card_default mt-6'>
             <div className='card_default__title'>
               <FontAwesomeIcon icon={faGamepad} className='fa-xl' />
-              <h3 className='title'>Games</h3>            
-              <Link href="/create-score" className="btn btn-icon ml-auto">
-                  <span className="icon">+</span>
-                  <span className="copy">New</span>
-              </Link>
+              <h3 className='title'>Games</h3>  
+              {"admin" === session?.user.profile ? (
+                <Link
+                  href="/create-score"
+                  className="btn btn-icon ml-auto"
+                >
+                    <span className="icon">+</span>
+                    <span className="copy">New</span>
+                </Link>
+              ): ( null )}
             </div>
             <div className='card_default__desc'>
               <Scores />
@@ -63,10 +73,15 @@ const Home = () => {
             <div className='card_default__title'>
             <FontAwesomeIcon icon={faUsersLine} className='fa-xl' />
               <h3 className='title'>Players</h3>
-              <Link href="/create-player" className="btn btn-icon ml-auto">
-                  <span className="icon">+</span>
-                  <span className="copy">New</span>
-              </Link>
+              {"admin" === session?.user.profile ? (
+                <Link
+                  href="/create-player"
+                  className="btn btn-icon ml-auto"
+                >
+                    <span className="icon">+</span>
+                    <span className="copy">New</span>
+                </Link>
+              ): ( null )}
             </div>
             <div className='card_default__desc'>
               <Players />

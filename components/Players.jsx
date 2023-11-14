@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import Link from "next/link";
+import { useSession } from "next-auth/react";
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import '@fortawesome/fontawesome-svg-core/styles.css';
@@ -13,6 +14,8 @@ import { Loading } from '@utils/loading';
 import PlayerCard from './PlayersList';
 
 const PlayerCardList = ({ data, handleTagClick}) =>  {
+  const { data: session } = useSession();
+
   let scoreCountValues = [];
   let maxValue = 0;
   let minValue = 0;
@@ -46,15 +49,17 @@ const PlayerCardList = ({ data, handleTagClick}) =>  {
           />
         ))}
       </ul>
+    ): "admin" === session?.user.profile ? (
+          <div className="message message__empty-state">
+            <FontAwesomeIcon icon={faUsersLine} className='fa-4x' />
+            <p>Create your first <b>Player</b>!</p>
+            <Link href="/create-player" className="btn btn-icon">
+                <span className="icon">+</span>
+                <span className="copy">Player</span>
+            </Link>
+          </div>
     ):(
-      <div className="message message__empty-state">
-        <FontAwesomeIcon icon={faUsersLine} className='fa-4x' />
-        <p>Create your first <b>Player</b>!</p>
-        <Link href="/create-player" className="btn btn-icon">
-            <span className="icon">+</span>
-            <span className="copy">Player</span>
-        </Link>
-      </div>
+      <div>No Data</div>
     )}
   </>
   )
