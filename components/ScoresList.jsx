@@ -50,24 +50,24 @@ const ScoreCard = ({ post, groupDate, handleTagClick }) => {
         case 1:
         case 2:
         case 3:
-          rowToStart = row;
+          rowToStart = 1;
           rowToStop = 4;
           break;
         case 7:
           rowToStart = 6;
-          rowToStop = 10;
+          rowToStop = 9;
           break;
         case 11:
           rowToStart = 11;
-          rowToStop = 15;
+          rowToStop = 14;
           break;
         case 15:
           rowToStart = 16;
-          rowToStop = 20;
+          rowToStop = 19;
           break;
       }
 
-      for ( let i = rowToStart; i < rowToStop; i++ ) {
+      for ( let i = rowToStart; i <= rowToStop; i++ ) {
         if ( table.rows[ i ].cells[ column ] ) {
           sumVal = sumVal + parseInt( table.rows[ i ].cells[ column ].innerHTML );
         }
